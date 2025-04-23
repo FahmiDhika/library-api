@@ -10,7 +10,7 @@ app.use(express.json())
 app.get(`/get`, [verifyToken, verifyRole([`ADMIN`])], getUser);
 app.post(`/new`, [verifyToken, verifyRole([`ADMIN`]), uploadFile.single("profilePicture"), verifyNewUser], newUser);
 app.post(`/login`, verifyAuthentication, authentication)
-app.put(`/update/:userId`, [verifyToken, verifyRole([`STUDENT`]), uploadFile.single("profilePicture"), verifyUpdateUser], updateUser);
+app.put(`/update/:userId`, [verifyToken, verifyRole([`ADMIN`, `STUDENT`]), uploadFile.single("profilePicture"), verifyUpdateUser], updateUser);
 app.delete(`/delete/:userId`, [verifyToken, verifyRole([`ADMIN`])], deleteUser)
 
 export default app;

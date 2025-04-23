@@ -4,11 +4,13 @@ import path from "path"
 
 // router import
 import userRouter from "./routers/userRoute"
+import bookRouter from "./routers/bookRoute"
 
 const app = express()
 app.use(cors())
 
 app.use("/user", userRouter)
+app.use(`/book`, bookRouter)
 
 app.use(express.static(path.join(__dirname, "..", "public")))
 
