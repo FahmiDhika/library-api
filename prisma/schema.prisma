@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum role {
+  ADMIN
+  STUDENT
+}
+
+enum bookType {
+  RANDOM
+  HISTORY
+  COMIC
+  NOVEL
+  ENCYCLOPEDIA
+  SCIENCE
+  BIOGRAPHY
+}
+
+model user {
+  userId          Int       @id() @default(autoincrement())
+  uuid            String    @unique() @default("")
+  name            String    @default("")
+  password        String    @default("")
+  email           String    @default("")
+  role            role      @default(STUDENT)
+  profilePicture  String    @default("")
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt()
+  borrow          borrow[]
+}
+
+model book {
+  bookId          Int       @id() @default(autoincrement())
+  uuid            String    @unique() @default("")
+  bookName        String    @default("")
+  bookType        bookType  @default(RANDOM)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt()
+  borrowList      borrowList[]
+}
+
+model borrow {
+  borrowId        Int       @id() @default(autoincrement())
+  uuid            String    @unique() @default("")
+  note            String?   @default("")  @db.Text()
+  borrowingTime   DateTime  @default(now())
+  returnTime      DateTime?
+  user            user      @relation(fields: [userId], references: [userId])
+  userId          Int
+  borrowList      borrowList[]
+}
+
+model borrowList {
+  borrowListId    Int       @id() @default(autoincrement())
+  uuid            String    @unique() @default("")
+  borrow          borrow    @relation(fields: [borrowId], references: [borrowId])
+  borrowId        Int
+  book            book      @relation(fields: [bookId], references: [bookId])
+  bookId          Int
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt()
+}
