@@ -31,6 +31,11 @@ enum bookType {
   BIOGRAPHY
 }
 
+enum status {
+  READY
+  BORROWED
+}
+
 model user {
   userId          Int       @id() @default(autoincrement())
   uuid            String    @unique() @default("")
@@ -49,6 +54,7 @@ model book {
   uuid            String    @unique() @default("")
   bookName        String    @default("")
   bookType        bookType  @default(RANDOM)
+  status          status?   @default(READY)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt()
   borrowList      borrowList[]

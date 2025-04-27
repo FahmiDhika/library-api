@@ -58,7 +58,7 @@ export const addBook = async (request: Request, response: Response) => {
 export const editBook = async (request: Request, response: Response) => {
   try {
     const { bookId } = request.params;
-    const { bookName, bookType } = request.body;
+    const { bookName, bookType, status } = request.body;
 
     const findBook = await prisma.book.findFirst({
       where: { bookId: Number(bookId) },
@@ -75,6 +75,7 @@ export const editBook = async (request: Request, response: Response) => {
       data: {
         bookName: bookName || findBook?.bookName,
         bookType: bookType || findBook?.bookType,
+        status: status || findBook?.status
       },
       where: { bookId: Number(bookId) },
     });

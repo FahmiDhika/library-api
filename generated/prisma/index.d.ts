@@ -58,6 +58,14 @@ export const bookType: {
 
 export type bookType = (typeof bookType)[keyof typeof bookType]
 
+
+export const status: {
+  READY: 'READY',
+  BORROWED: 'BORROWED'
+};
+
+export type status = (typeof status)[keyof typeof status]
+
 }
 
 export type role = $Enums.role
@@ -67,6 +75,10 @@ export const role: typeof $Enums.role
 export type bookType = $Enums.bookType
 
 export const bookType: typeof $Enums.bookType
+
+export type status = $Enums.status
+
+export const status: typeof $Enums.status
 
 /**
  * ##  Prisma Client ʲˢ
@@ -2449,6 +2461,7 @@ export namespace Prisma {
     uuid: string | null
     bookName: string | null
     bookType: $Enums.bookType | null
+    status: $Enums.status | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2458,6 +2471,7 @@ export namespace Prisma {
     uuid: string | null
     bookName: string | null
     bookType: $Enums.bookType | null
+    status: $Enums.status | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2467,6 +2481,7 @@ export namespace Prisma {
     uuid: number
     bookName: number
     bookType: number
+    status: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2486,6 +2501,7 @@ export namespace Prisma {
     uuid?: true
     bookName?: true
     bookType?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2495,6 +2511,7 @@ export namespace Prisma {
     uuid?: true
     bookName?: true
     bookType?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2504,6 +2521,7 @@ export namespace Prisma {
     uuid?: true
     bookName?: true
     bookType?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2600,6 +2618,7 @@ export namespace Prisma {
     uuid: string
     bookName: string
     bookType: $Enums.bookType
+    status: $Enums.status | null
     createdAt: Date
     updatedAt: Date
     _count: BookCountAggregateOutputType | null
@@ -2628,6 +2647,7 @@ export namespace Prisma {
     uuid?: boolean
     bookName?: boolean
     bookType?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     borrowList?: boolean | book$borrowListArgs<ExtArgs>
@@ -2639,6 +2659,7 @@ export namespace Prisma {
     uuid?: boolean
     bookName?: boolean
     bookType?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["book"]>
@@ -2648,6 +2669,7 @@ export namespace Prisma {
     uuid?: boolean
     bookName?: boolean
     bookType?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["book"]>
@@ -2657,11 +2679,12 @@ export namespace Prisma {
     uuid?: boolean
     bookName?: boolean
     bookType?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type bookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"bookId" | "uuid" | "bookName" | "bookType" | "createdAt" | "updatedAt", ExtArgs["result"]["book"]>
+  export type bookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"bookId" | "uuid" | "bookName" | "bookType" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["book"]>
   export type bookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     borrowList?: boolean | book$borrowListArgs<ExtArgs>
     _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
@@ -2679,6 +2702,7 @@ export namespace Prisma {
       uuid: string
       bookName: string
       bookType: $Enums.bookType
+      status: $Enums.status | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["book"]>
@@ -3109,6 +3133,7 @@ export namespace Prisma {
     readonly uuid: FieldRef<"book", 'String'>
     readonly bookName: FieldRef<"book", 'String'>
     readonly bookType: FieldRef<"book", 'bookType'>
+    readonly status: FieldRef<"book", 'status'>
     readonly createdAt: FieldRef<"book", 'DateTime'>
     readonly updatedAt: FieldRef<"book", 'DateTime'>
   }
@@ -5835,6 +5860,7 @@ export namespace Prisma {
     uuid: 'uuid',
     bookName: 'bookName',
     bookType: 'bookType',
+    status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -5966,6 +5992,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'status'
+   */
+  export type EnumstatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'status'>
+    
+
+
+  /**
+   * Reference to a field of type 'status[]'
+   */
+  export type ListEnumstatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'status[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -6067,6 +6107,7 @@ export namespace Prisma {
     uuid?: StringFilter<"book"> | string
     bookName?: StringFilter<"book"> | string
     bookType?: EnumbookTypeFilter<"book"> | $Enums.bookType
+    status?: EnumstatusNullableFilter<"book"> | $Enums.status | null
     createdAt?: DateTimeFilter<"book"> | Date | string
     updatedAt?: DateTimeFilter<"book"> | Date | string
     borrowList?: BorrowListListRelationFilter
@@ -6077,6 +6118,7 @@ export namespace Prisma {
     uuid?: SortOrder
     bookName?: SortOrder
     bookType?: SortOrder
+    status?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     borrowList?: borrowListOrderByRelationAggregateInput
@@ -6090,6 +6132,7 @@ export namespace Prisma {
     NOT?: bookWhereInput | bookWhereInput[]
     bookName?: StringFilter<"book"> | string
     bookType?: EnumbookTypeFilter<"book"> | $Enums.bookType
+    status?: EnumstatusNullableFilter<"book"> | $Enums.status | null
     createdAt?: DateTimeFilter<"book"> | Date | string
     updatedAt?: DateTimeFilter<"book"> | Date | string
     borrowList?: BorrowListListRelationFilter
@@ -6100,6 +6143,7 @@ export namespace Prisma {
     uuid?: SortOrder
     bookName?: SortOrder
     bookType?: SortOrder
+    status?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: bookCountOrderByAggregateInput
@@ -6117,6 +6161,7 @@ export namespace Prisma {
     uuid?: StringWithAggregatesFilter<"book"> | string
     bookName?: StringWithAggregatesFilter<"book"> | string
     bookType?: EnumbookTypeWithAggregatesFilter<"book"> | $Enums.bookType
+    status?: EnumstatusNullableWithAggregatesFilter<"book"> | $Enums.status | null
     createdAt?: DateTimeWithAggregatesFilter<"book"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"book"> | Date | string
   }
@@ -6340,6 +6385,7 @@ export namespace Prisma {
     uuid?: string
     bookName?: string
     bookType?: $Enums.bookType
+    status?: $Enums.status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     borrowList?: borrowListCreateNestedManyWithoutBookInput
@@ -6350,6 +6396,7 @@ export namespace Prisma {
     uuid?: string
     bookName?: string
     bookType?: $Enums.bookType
+    status?: $Enums.status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     borrowList?: borrowListUncheckedCreateNestedManyWithoutBookInput
@@ -6359,6 +6406,7 @@ export namespace Prisma {
     uuid?: StringFieldUpdateOperationsInput | string
     bookName?: StringFieldUpdateOperationsInput | string
     bookType?: EnumbookTypeFieldUpdateOperationsInput | $Enums.bookType
+    status?: NullableEnumstatusFieldUpdateOperationsInput | $Enums.status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     borrowList?: borrowListUpdateManyWithoutBookNestedInput
@@ -6369,6 +6417,7 @@ export namespace Prisma {
     uuid?: StringFieldUpdateOperationsInput | string
     bookName?: StringFieldUpdateOperationsInput | string
     bookType?: EnumbookTypeFieldUpdateOperationsInput | $Enums.bookType
+    status?: NullableEnumstatusFieldUpdateOperationsInput | $Enums.status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     borrowList?: borrowListUncheckedUpdateManyWithoutBookNestedInput
@@ -6379,6 +6428,7 @@ export namespace Prisma {
     uuid?: string
     bookName?: string
     bookType?: $Enums.bookType
+    status?: $Enums.status | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6387,6 +6437,7 @@ export namespace Prisma {
     uuid?: StringFieldUpdateOperationsInput | string
     bookName?: StringFieldUpdateOperationsInput | string
     bookType?: EnumbookTypeFieldUpdateOperationsInput | $Enums.bookType
+    status?: NullableEnumstatusFieldUpdateOperationsInput | $Enums.status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6396,6 +6447,7 @@ export namespace Prisma {
     uuid?: StringFieldUpdateOperationsInput | string
     bookName?: StringFieldUpdateOperationsInput | string
     bookType?: EnumbookTypeFieldUpdateOperationsInput | $Enums.bookType
+    status?: NullableEnumstatusFieldUpdateOperationsInput | $Enums.status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6684,10 +6736,22 @@ export namespace Prisma {
     not?: NestedEnumbookTypeFilter<$PrismaModel> | $Enums.bookType
   }
 
+  export type EnumstatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.status | EnumstatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumstatusNullableFilter<$PrismaModel> | $Enums.status | null
+  }
+
   export type BorrowListListRelationFilter = {
     every?: borrowListWhereInput
     some?: borrowListWhereInput
     none?: borrowListWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type borrowListOrderByRelationAggregateInput = {
@@ -6699,6 +6763,7 @@ export namespace Prisma {
     uuid?: SortOrder
     bookName?: SortOrder
     bookType?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6712,6 +6777,7 @@ export namespace Prisma {
     uuid?: SortOrder
     bookName?: SortOrder
     bookType?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6721,6 +6787,7 @@ export namespace Prisma {
     uuid?: SortOrder
     bookName?: SortOrder
     bookType?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6737,6 +6804,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumbookTypeFilter<$PrismaModel>
     _max?: NestedEnumbookTypeFilter<$PrismaModel>
+  }
+
+  export type EnumstatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.status | EnumstatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumstatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.status | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumstatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumstatusNullableFilter<$PrismaModel>
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -6768,11 +6845,6 @@ export namespace Prisma {
   export type UserScalarRelationFilter = {
     is?: userWhereInput
     isNot?: userWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type borrowCountOrderByAggregateInput = {
@@ -6971,6 +7043,10 @@ export namespace Prisma {
 
   export type EnumbookTypeFieldUpdateOperationsInput = {
     set?: $Enums.bookType
+  }
+
+  export type NullableEnumstatusFieldUpdateOperationsInput = {
+    set?: $Enums.status | null
   }
 
   export type borrowListUpdateManyWithoutBookNestedInput = {
@@ -7211,6 +7287,13 @@ export namespace Prisma {
     not?: NestedEnumbookTypeFilter<$PrismaModel> | $Enums.bookType
   }
 
+  export type NestedEnumstatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.status | EnumstatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumstatusNullableFilter<$PrismaModel> | $Enums.status | null
+  }
+
   export type NestedEnumbookTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.bookType | EnumbookTypeFieldRefInput<$PrismaModel>
     in?: $Enums.bookType[] | ListEnumbookTypeFieldRefInput<$PrismaModel>
@@ -7219,6 +7302,27 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumbookTypeFilter<$PrismaModel>
     _max?: NestedEnumbookTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumstatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.status | EnumstatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumstatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.status | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumstatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumstatusNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -7261,17 +7365,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7525,6 +7618,7 @@ export namespace Prisma {
     uuid?: string
     bookName?: string
     bookType?: $Enums.bookType
+    status?: $Enums.status | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7534,6 +7628,7 @@ export namespace Prisma {
     uuid?: string
     bookName?: string
     bookType?: $Enums.bookType
+    status?: $Enums.status | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7586,6 +7681,7 @@ export namespace Prisma {
     uuid?: StringFieldUpdateOperationsInput | string
     bookName?: StringFieldUpdateOperationsInput | string
     bookType?: EnumbookTypeFieldUpdateOperationsInput | $Enums.bookType
+    status?: NullableEnumstatusFieldUpdateOperationsInput | $Enums.status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7595,6 +7691,7 @@ export namespace Prisma {
     uuid?: StringFieldUpdateOperationsInput | string
     bookName?: StringFieldUpdateOperationsInput | string
     bookType?: EnumbookTypeFieldUpdateOperationsInput | $Enums.bookType
+    status?: NullableEnumstatusFieldUpdateOperationsInput | $Enums.status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

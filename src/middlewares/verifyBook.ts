@@ -15,6 +15,7 @@ export const addBookSchema = Joi.object({
       `BIOGRAPHY`
     )
     .required(),
+  status: Joi.string().valid(`BORROWED`, `READY`).optional(),
 });
 
 export const editBookSchema = Joi.object({
@@ -30,6 +31,7 @@ export const editBookSchema = Joi.object({
       `BIOGRAPHY`
     )
     .optional(),
+  status: Joi.string().valid(`BORROWED`, `READY`).optional(),
 });
 
 export const verifyAddBook = (

@@ -134,6 +134,7 @@ exports.Prisma.BookScalarFieldEnum = {
   uuid: 'uuid',
   bookName: 'bookName',
   bookType: 'bookType',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -183,6 +184,11 @@ exports.bookType = exports.$Enums.bookType = {
   ENCYCLOPEDIA: 'ENCYCLOPEDIA',
   SCIENCE: 'SCIENCE',
   BIOGRAPHY: 'BIOGRAPHY'
+};
+
+exports.status = exports.$Enums.status = {
+  READY: 'READY',
+  BORROWED: 'BORROWED'
 };
 
 exports.Prisma.ModelName = {
