@@ -143,6 +143,7 @@ exports.Prisma.BorrowScalarFieldEnum = {
   borrowId: 'borrowId',
   uuid: 'uuid',
   note: 'note',
+  borrowStatus: 'borrowStatus',
   borrowingTime: 'borrowingTime',
   returnTime: 'returnTime',
   userId: 'userId'
@@ -188,6 +189,11 @@ exports.bookType = exports.$Enums.bookType = {
 
 exports.status = exports.$Enums.status = {
   READY: 'READY',
+  BORROWED: 'BORROWED'
+};
+
+exports.borrowStatus = exports.$Enums.borrowStatus = {
+  DONE: 'DONE',
   BORROWED: 'BORROWED'
 };
 

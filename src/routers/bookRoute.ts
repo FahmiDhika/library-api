@@ -5,7 +5,7 @@ import { verifyAddBook, verifyEditBook } from "../middlewares/verifyBook";
 import { verifyToken, verifyRole } from "../middlewares/authorization";
 
 const app = express();
-app.use(express());
+app.use(express.json());
 const upload = multer();
 
 app.get(`/get`, [verifyToken, verifyRole([`ADMIN`, `STUDENT`])], getBook);

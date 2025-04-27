@@ -66,6 +66,14 @@ export const status: {
 
 export type status = (typeof status)[keyof typeof status]
 
+
+export const borrowStatus: {
+  DONE: 'DONE',
+  BORROWED: 'BORROWED'
+};
+
+export type borrowStatus = (typeof borrowStatus)[keyof typeof borrowStatus]
+
 }
 
 export type role = $Enums.role
@@ -79,6 +87,10 @@ export const bookType: typeof $Enums.bookType
 export type status = $Enums.status
 
 export const status: typeof $Enums.status
+
+export type borrowStatus = $Enums.borrowStatus
+
+export const borrowStatus: typeof $Enums.borrowStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -3592,6 +3604,7 @@ export namespace Prisma {
     borrowId: number | null
     uuid: string | null
     note: string | null
+    borrowStatus: $Enums.borrowStatus | null
     borrowingTime: Date | null
     returnTime: Date | null
     userId: number | null
@@ -3601,6 +3614,7 @@ export namespace Prisma {
     borrowId: number | null
     uuid: string | null
     note: string | null
+    borrowStatus: $Enums.borrowStatus | null
     borrowingTime: Date | null
     returnTime: Date | null
     userId: number | null
@@ -3610,6 +3624,7 @@ export namespace Prisma {
     borrowId: number
     uuid: number
     note: number
+    borrowStatus: number
     borrowingTime: number
     returnTime: number
     userId: number
@@ -3631,6 +3646,7 @@ export namespace Prisma {
     borrowId?: true
     uuid?: true
     note?: true
+    borrowStatus?: true
     borrowingTime?: true
     returnTime?: true
     userId?: true
@@ -3640,6 +3656,7 @@ export namespace Prisma {
     borrowId?: true
     uuid?: true
     note?: true
+    borrowStatus?: true
     borrowingTime?: true
     returnTime?: true
     userId?: true
@@ -3649,6 +3666,7 @@ export namespace Prisma {
     borrowId?: true
     uuid?: true
     note?: true
+    borrowStatus?: true
     borrowingTime?: true
     returnTime?: true
     userId?: true
@@ -3745,8 +3763,9 @@ export namespace Prisma {
     borrowId: number
     uuid: string
     note: string | null
+    borrowStatus: $Enums.borrowStatus
     borrowingTime: Date
-    returnTime: Date | null
+    returnTime: Date
     userId: number
     _count: BorrowCountAggregateOutputType | null
     _avg: BorrowAvgAggregateOutputType | null
@@ -3773,6 +3792,7 @@ export namespace Prisma {
     borrowId?: boolean
     uuid?: boolean
     note?: boolean
+    borrowStatus?: boolean
     borrowingTime?: boolean
     returnTime?: boolean
     userId?: boolean
@@ -3785,6 +3805,7 @@ export namespace Prisma {
     borrowId?: boolean
     uuid?: boolean
     note?: boolean
+    borrowStatus?: boolean
     borrowingTime?: boolean
     returnTime?: boolean
     userId?: boolean
@@ -3795,6 +3816,7 @@ export namespace Prisma {
     borrowId?: boolean
     uuid?: boolean
     note?: boolean
+    borrowStatus?: boolean
     borrowingTime?: boolean
     returnTime?: boolean
     userId?: boolean
@@ -3805,12 +3827,13 @@ export namespace Prisma {
     borrowId?: boolean
     uuid?: boolean
     note?: boolean
+    borrowStatus?: boolean
     borrowingTime?: boolean
     returnTime?: boolean
     userId?: boolean
   }
 
-  export type borrowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"borrowId" | "uuid" | "note" | "borrowingTime" | "returnTime" | "userId", ExtArgs["result"]["borrow"]>
+  export type borrowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"borrowId" | "uuid" | "note" | "borrowStatus" | "borrowingTime" | "returnTime" | "userId", ExtArgs["result"]["borrow"]>
   export type borrowInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | userDefaultArgs<ExtArgs>
     borrowList?: boolean | borrow$borrowListArgs<ExtArgs>
@@ -3833,8 +3856,9 @@ export namespace Prisma {
       borrowId: number
       uuid: string
       note: string | null
+      borrowStatus: $Enums.borrowStatus
       borrowingTime: Date
-      returnTime: Date | null
+      returnTime: Date
       userId: number
     }, ExtArgs["result"]["borrow"]>
     composites: {}
@@ -4264,6 +4288,7 @@ export namespace Prisma {
     readonly borrowId: FieldRef<"borrow", 'Int'>
     readonly uuid: FieldRef<"borrow", 'String'>
     readonly note: FieldRef<"borrow", 'String'>
+    readonly borrowStatus: FieldRef<"borrow", 'borrowStatus'>
     readonly borrowingTime: FieldRef<"borrow", 'DateTime'>
     readonly returnTime: FieldRef<"borrow", 'DateTime'>
     readonly userId: FieldRef<"borrow", 'Int'>
@@ -5872,6 +5897,7 @@ export namespace Prisma {
     borrowId: 'borrowId',
     uuid: 'uuid',
     note: 'note',
+    borrowStatus: 'borrowStatus',
     borrowingTime: 'borrowingTime',
     returnTime: 'returnTime',
     userId: 'userId'
@@ -6002,6 +6028,20 @@ export namespace Prisma {
    * Reference to a field of type 'status[]'
    */
   export type ListEnumstatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'status[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'borrowStatus'
+   */
+  export type EnumborrowStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'borrowStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'borrowStatus[]'
+   */
+  export type ListEnumborrowStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'borrowStatus[]'>
     
 
 
@@ -6173,8 +6213,9 @@ export namespace Prisma {
     borrowId?: IntFilter<"borrow"> | number
     uuid?: StringFilter<"borrow"> | string
     note?: StringNullableFilter<"borrow"> | string | null
+    borrowStatus?: EnumborrowStatusFilter<"borrow"> | $Enums.borrowStatus
     borrowingTime?: DateTimeFilter<"borrow"> | Date | string
-    returnTime?: DateTimeNullableFilter<"borrow"> | Date | string | null
+    returnTime?: DateTimeFilter<"borrow"> | Date | string
     userId?: IntFilter<"borrow"> | number
     user?: XOR<UserScalarRelationFilter, userWhereInput>
     borrowList?: BorrowListListRelationFilter
@@ -6184,8 +6225,9 @@ export namespace Prisma {
     borrowId?: SortOrder
     uuid?: SortOrder
     note?: SortOrderInput | SortOrder
+    borrowStatus?: SortOrder
     borrowingTime?: SortOrder
-    returnTime?: SortOrderInput | SortOrder
+    returnTime?: SortOrder
     userId?: SortOrder
     user?: userOrderByWithRelationInput
     borrowList?: borrowListOrderByRelationAggregateInput
@@ -6198,8 +6240,9 @@ export namespace Prisma {
     OR?: borrowWhereInput[]
     NOT?: borrowWhereInput | borrowWhereInput[]
     note?: StringNullableFilter<"borrow"> | string | null
+    borrowStatus?: EnumborrowStatusFilter<"borrow"> | $Enums.borrowStatus
     borrowingTime?: DateTimeFilter<"borrow"> | Date | string
-    returnTime?: DateTimeNullableFilter<"borrow"> | Date | string | null
+    returnTime?: DateTimeFilter<"borrow"> | Date | string
     userId?: IntFilter<"borrow"> | number
     user?: XOR<UserScalarRelationFilter, userWhereInput>
     borrowList?: BorrowListListRelationFilter
@@ -6209,8 +6252,9 @@ export namespace Prisma {
     borrowId?: SortOrder
     uuid?: SortOrder
     note?: SortOrderInput | SortOrder
+    borrowStatus?: SortOrder
     borrowingTime?: SortOrder
-    returnTime?: SortOrderInput | SortOrder
+    returnTime?: SortOrder
     userId?: SortOrder
     _count?: borrowCountOrderByAggregateInput
     _avg?: borrowAvgOrderByAggregateInput
@@ -6226,8 +6270,9 @@ export namespace Prisma {
     borrowId?: IntWithAggregatesFilter<"borrow"> | number
     uuid?: StringWithAggregatesFilter<"borrow"> | string
     note?: StringNullableWithAggregatesFilter<"borrow"> | string | null
+    borrowStatus?: EnumborrowStatusWithAggregatesFilter<"borrow"> | $Enums.borrowStatus
     borrowingTime?: DateTimeWithAggregatesFilter<"borrow"> | Date | string
-    returnTime?: DateTimeNullableWithAggregatesFilter<"borrow"> | Date | string | null
+    returnTime?: DateTimeWithAggregatesFilter<"borrow"> | Date | string
     userId?: IntWithAggregatesFilter<"borrow"> | number
   }
 
@@ -6455,8 +6500,9 @@ export namespace Prisma {
   export type borrowCreateInput = {
     uuid?: string
     note?: string | null
+    borrowStatus?: $Enums.borrowStatus
     borrowingTime?: Date | string
-    returnTime?: Date | string | null
+    returnTime?: Date | string
     user: userCreateNestedOneWithoutBorrowInput
     borrowList?: borrowListCreateNestedManyWithoutBorrowInput
   }
@@ -6465,8 +6511,9 @@ export namespace Prisma {
     borrowId?: number
     uuid?: string
     note?: string | null
+    borrowStatus?: $Enums.borrowStatus
     borrowingTime?: Date | string
-    returnTime?: Date | string | null
+    returnTime?: Date | string
     userId: number
     borrowList?: borrowListUncheckedCreateNestedManyWithoutBorrowInput
   }
@@ -6474,8 +6521,9 @@ export namespace Prisma {
   export type borrowUpdateInput = {
     uuid?: StringFieldUpdateOperationsInput | string
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    borrowStatus?: EnumborrowStatusFieldUpdateOperationsInput | $Enums.borrowStatus
     borrowingTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    returnTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnTime?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: userUpdateOneRequiredWithoutBorrowNestedInput
     borrowList?: borrowListUpdateManyWithoutBorrowNestedInput
   }
@@ -6484,8 +6532,9 @@ export namespace Prisma {
     borrowId?: IntFieldUpdateOperationsInput | number
     uuid?: StringFieldUpdateOperationsInput | string
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    borrowStatus?: EnumborrowStatusFieldUpdateOperationsInput | $Enums.borrowStatus
     borrowingTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    returnTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnTime?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     borrowList?: borrowListUncheckedUpdateManyWithoutBorrowNestedInput
   }
@@ -6494,24 +6543,27 @@ export namespace Prisma {
     borrowId?: number
     uuid?: string
     note?: string | null
+    borrowStatus?: $Enums.borrowStatus
     borrowingTime?: Date | string
-    returnTime?: Date | string | null
+    returnTime?: Date | string
     userId: number
   }
 
   export type borrowUpdateManyMutationInput = {
     uuid?: StringFieldUpdateOperationsInput | string
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    borrowStatus?: EnumborrowStatusFieldUpdateOperationsInput | $Enums.borrowStatus
     borrowingTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    returnTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnTime?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type borrowUncheckedUpdateManyInput = {
     borrowId?: IntFieldUpdateOperationsInput | number
     uuid?: StringFieldUpdateOperationsInput | string
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    borrowStatus?: EnumborrowStatusFieldUpdateOperationsInput | $Enums.borrowStatus
     borrowingTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    returnTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnTime?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -6831,15 +6883,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type EnumborrowStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.borrowStatus | EnumborrowStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.borrowStatus[] | ListEnumborrowStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.borrowStatus[] | ListEnumborrowStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumborrowStatusFilter<$PrismaModel> | $Enums.borrowStatus
   }
 
   export type UserScalarRelationFilter = {
@@ -6851,6 +6899,7 @@ export namespace Prisma {
     borrowId?: SortOrder
     uuid?: SortOrder
     note?: SortOrder
+    borrowStatus?: SortOrder
     borrowingTime?: SortOrder
     returnTime?: SortOrder
     userId?: SortOrder
@@ -6865,6 +6914,7 @@ export namespace Prisma {
     borrowId?: SortOrder
     uuid?: SortOrder
     note?: SortOrder
+    borrowStatus?: SortOrder
     borrowingTime?: SortOrder
     returnTime?: SortOrder
     userId?: SortOrder
@@ -6874,6 +6924,7 @@ export namespace Prisma {
     borrowId?: SortOrder
     uuid?: SortOrder
     note?: SortOrder
+    borrowStatus?: SortOrder
     borrowingTime?: SortOrder
     returnTime?: SortOrder
     userId?: SortOrder
@@ -6902,18 +6953,14 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  export type EnumborrowStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.borrowStatus | EnumborrowStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.borrowStatus[] | ListEnumborrowStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.borrowStatus[] | ListEnumborrowStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumborrowStatusWithAggregatesFilter<$PrismaModel> | $Enums.borrowStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumborrowStatusFilter<$PrismaModel>
+    _max?: NestedEnumborrowStatusFilter<$PrismaModel>
   }
 
   export type BorrowScalarRelationFilter = {
@@ -7101,8 +7148,8 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
+  export type EnumborrowStatusFieldUpdateOperationsInput = {
+    set?: $Enums.borrowStatus
   }
 
   export type userUpdateOneRequiredWithoutBorrowNestedInput = {
@@ -7339,15 +7386,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type NestedEnumborrowStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.borrowStatus | EnumborrowStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.borrowStatus[] | ListEnumborrowStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.borrowStatus[] | ListEnumborrowStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumborrowStatusFilter<$PrismaModel> | $Enums.borrowStatus
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7367,25 +7410,22 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  export type NestedEnumborrowStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.borrowStatus | EnumborrowStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.borrowStatus[] | ListEnumborrowStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.borrowStatus[] | ListEnumborrowStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumborrowStatusWithAggregatesFilter<$PrismaModel> | $Enums.borrowStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumborrowStatusFilter<$PrismaModel>
+    _max?: NestedEnumborrowStatusFilter<$PrismaModel>
   }
 
   export type borrowCreateWithoutUserInput = {
     uuid?: string
     note?: string | null
+    borrowStatus?: $Enums.borrowStatus
     borrowingTime?: Date | string
-    returnTime?: Date | string | null
+    returnTime?: Date | string
     borrowList?: borrowListCreateNestedManyWithoutBorrowInput
   }
 
@@ -7393,8 +7433,9 @@ export namespace Prisma {
     borrowId?: number
     uuid?: string
     note?: string | null
+    borrowStatus?: $Enums.borrowStatus
     borrowingTime?: Date | string
-    returnTime?: Date | string | null
+    returnTime?: Date | string
     borrowList?: borrowListUncheckedCreateNestedManyWithoutBorrowInput
   }
 
@@ -7431,8 +7472,9 @@ export namespace Prisma {
     borrowId?: IntFilter<"borrow"> | number
     uuid?: StringFilter<"borrow"> | string
     note?: StringNullableFilter<"borrow"> | string | null
+    borrowStatus?: EnumborrowStatusFilter<"borrow"> | $Enums.borrowStatus
     borrowingTime?: DateTimeFilter<"borrow"> | Date | string
-    returnTime?: DateTimeNullableFilter<"borrow"> | Date | string | null
+    returnTime?: DateTimeFilter<"borrow"> | Date | string
     userId?: IntFilter<"borrow"> | number
   }
 
@@ -7595,8 +7637,9 @@ export namespace Prisma {
   export type borrowCreateWithoutBorrowListInput = {
     uuid?: string
     note?: string | null
+    borrowStatus?: $Enums.borrowStatus
     borrowingTime?: Date | string
-    returnTime?: Date | string | null
+    returnTime?: Date | string
     user: userCreateNestedOneWithoutBorrowInput
   }
 
@@ -7604,8 +7647,9 @@ export namespace Prisma {
     borrowId?: number
     uuid?: string
     note?: string | null
+    borrowStatus?: $Enums.borrowStatus
     borrowingTime?: Date | string
-    returnTime?: Date | string | null
+    returnTime?: Date | string
     userId: number
   }
 
@@ -7652,8 +7696,9 @@ export namespace Prisma {
   export type borrowUpdateWithoutBorrowListInput = {
     uuid?: StringFieldUpdateOperationsInput | string
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    borrowStatus?: EnumborrowStatusFieldUpdateOperationsInput | $Enums.borrowStatus
     borrowingTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    returnTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnTime?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: userUpdateOneRequiredWithoutBorrowNestedInput
   }
 
@@ -7661,8 +7706,9 @@ export namespace Prisma {
     borrowId?: IntFieldUpdateOperationsInput | number
     uuid?: StringFieldUpdateOperationsInput | string
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    borrowStatus?: EnumborrowStatusFieldUpdateOperationsInput | $Enums.borrowStatus
     borrowingTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    returnTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnTime?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -7700,15 +7746,17 @@ export namespace Prisma {
     borrowId?: number
     uuid?: string
     note?: string | null
+    borrowStatus?: $Enums.borrowStatus
     borrowingTime?: Date | string
-    returnTime?: Date | string | null
+    returnTime?: Date | string
   }
 
   export type borrowUpdateWithoutUserInput = {
     uuid?: StringFieldUpdateOperationsInput | string
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    borrowStatus?: EnumborrowStatusFieldUpdateOperationsInput | $Enums.borrowStatus
     borrowingTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    returnTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnTime?: DateTimeFieldUpdateOperationsInput | Date | string
     borrowList?: borrowListUpdateManyWithoutBorrowNestedInput
   }
 
@@ -7716,8 +7764,9 @@ export namespace Prisma {
     borrowId?: IntFieldUpdateOperationsInput | number
     uuid?: StringFieldUpdateOperationsInput | string
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    borrowStatus?: EnumborrowStatusFieldUpdateOperationsInput | $Enums.borrowStatus
     borrowingTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    returnTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnTime?: DateTimeFieldUpdateOperationsInput | Date | string
     borrowList?: borrowListUncheckedUpdateManyWithoutBorrowNestedInput
   }
 
@@ -7725,8 +7774,9 @@ export namespace Prisma {
     borrowId?: IntFieldUpdateOperationsInput | number
     uuid?: StringFieldUpdateOperationsInput | string
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    borrowStatus?: EnumborrowStatusFieldUpdateOperationsInput | $Enums.borrowStatus
     borrowingTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    returnTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnTime?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type borrowListCreateManyBookInput = {

@@ -36,6 +36,11 @@ enum status {
   BORROWED
 }
 
+enum borrowStatus {
+  DONE
+  BORROWED
+}
+
 model user {
   userId         Int      @id() @default(autoincrement())
   uuid           String   @unique() @default("")
@@ -64,6 +69,7 @@ model borrow {
   borrowId      Int          @id() @default(autoincrement())
   uuid          String       @unique() @default("")
   note          String?      @default("") @db.Text()
+  borrowStatus  borrowStatus @default(BORROWED)
   borrowingTime DateTime     @default(now())
   returnTime    DateTime?
   user          user         @relation(fields: [userId], references: [userId])

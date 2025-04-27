@@ -36,6 +36,11 @@ enum status {
   BORROWED
 }
 
+enum borrowStatus {
+  DONE
+  BORROWED
+}
+
 model user {
   userId          Int       @id() @default(autoincrement())
   uuid            String    @unique() @default("")
@@ -45,7 +50,7 @@ model user {
   role            role      @default(STUDENT)
   profilePicture  String    @default("")
   createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt()
+  updatedAt       DateTime  @updatedAt
   borrow          borrow[]
 }
 
@@ -56,7 +61,7 @@ model book {
   bookType        bookType  @default(RANDOM)
   status          status?   @default(READY)
   createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt()
+  updatedAt       DateTime  @updatedAt
   borrowList      borrowList[]
 }
 
@@ -64,8 +69,9 @@ model borrow {
   borrowId        Int       @id() @default(autoincrement())
   uuid            String    @unique() @default("")
   note            String?   @default("")  @db.Text()
+  borrowStatus    borrowStatus  @default(BORROWED)
   borrowingTime   DateTime  @default(now())
-  returnTime      DateTime?
+  returnTime      DateTime  @updatedAt
   user            user      @relation(fields: [userId], references: [userId])
   userId          Int
   borrowList      borrowList[]
@@ -79,5 +85,5 @@ model borrowList {
   book            book      @relation(fields: [bookId], references: [bookId])
   bookId          Int
   createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt()
+  updatedAt       DateTime  @updatedAt
 }
